@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заголовок страницы</title>
+    <link rel="stylesheet" href="./styles/style.css">
+
+    <meta property="og:title" content="Стихотворение от автора">
+    <meta property="og:description" content="Коротко и смешно">
+    <meta property="og:image" content="https://example.com/image.jpg">
+    <meta property="og:url" content="https://example.com/">
+</head>
+<body>
+    <header>
+        <h1>Это мой сайт</h1>
+        <p>Он хороший</p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Эта страница</a></li>
+                <li><a href="https://vk.com\f_starikov">Постучаться к автору</a></li>
+            </ul>
+        </nav>
+    </header>
+    <footer>
+        <p>Стариков Федор (копирайт)</p>
+    </footer>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>My title</title>
+        <link rel="stylesheet" type="text/css" href="main.css">
+    </head>
+    <body>
+        <div class="main">
+            <h2>JavaScript Confirm Box</h2>
+            <button class="btn" onclick="myFunction()">Try it</button>
+            <ul id="demo">
+            </ul>
+        </div>
+        <script>
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            function myFunction() {
+                (async () => {
+                    let response = await fetch('https://kav-api.kovalev.team/servodrive/lastActualData?servoDriveId=1');
+                    let el = document.getElementById('demo')
+                    el.innerHTML = ""
+                    let text = await response.text(); // прочитать тело ответа как текст
+                    for (const [key, value] of Object.entries(JSON.parse(text)[0])) {
+                        const newEl = document.createElement("li")
+                        newEl.appendChild(document.createTextNode(`${key}: ${value}`))
+                        el.appendChild(newEl)
+                        await sleep(100)
+                    }
+                })()
+            }
+        </script>
+    </body>
+</body>
+<script>
+    if (confirm('Доброго времени суток, у этой страницы есть к вам вопрос, вы готовы ответить?')) {
+        var name = prompt('Как вас зовут?', 'Введите сюда ваше имя');
+        alert("Ваше имя - " + name)
+    }
+    alert("Спасибо, что уделили время")
+</script>
+</html>
